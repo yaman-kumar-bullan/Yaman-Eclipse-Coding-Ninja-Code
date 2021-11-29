@@ -1,0 +1,70 @@
+package codingNinjas;
+import java.util.*;
+public class Recurssion {
+	
+	public static int factorial(int n) {
+		if(n==0) return 1;                    //Base case
+		return n*factorial(n-1);                //If somehow we get the factorial of n-1
+	}
+	
+	public static int sum(int n) {
+		if(n==1) return 1;
+		return n + sum(n-1);     //If somehow we get the sum of n-1 natural numbers
+	}
+	
+	public static int power(int x, int n) { //Finding x^n
+		if(n==0) return 1;
+		return x * power(x,n-1);
+	}
+	
+	public static int fastPower(int a, int n) {
+		if(n==0) return 1;
+		
+		if(n%2==0) return fastPower(a*a,n/2);
+		else return a * fastPower(a,n-1);
+	}
+	
+	static int i =  0;
+	
+	public static void printUptoNInIncreasingOrder(int n) {
+		
+//		i++;
+//		if(i==n) {
+//			System.out.print(i + " ");
+//			return;
+//		}
+//		
+//		System.out.print(i + " ");
+//		printUptoNInIncreasingOrder(n);
+		
+//		if(n==1) {
+//			System.out.print(n + " ");
+//		}
+//		
+//		printUptoNInIncreasingOrder(n-1);
+//		System.out.print(n + " ");
+		
+		if(n>=1) {
+			printUptoNInIncreasingOrder(n-1);
+			System.out.println(n);
+		}
+	}
+
+	/* 
+	 * Stack Overflow Error is when our storage to save function is filled and our function is getting called infinite times
+	 */
+	
+	/*
+	 * When one fun calls other it gets in paused state until it gets the called answer
+	 * And in case of recursion all the called functions are stored separately
+	 */
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		printUptoNInIncreasingOrder(n);
+		
+		sc.close();
+	}
+}

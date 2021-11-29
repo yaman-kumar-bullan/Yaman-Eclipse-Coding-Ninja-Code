@@ -1,0 +1,152 @@
+package linkedList;
+import java.util.*;
+public class LinkedListUse {
+	
+	public static Node<Integer> takeInput() {
+		Scanner sc = new Scanner(System.in);
+		
+//		Node<Integer> head = null;
+		Node<Integer> head = null, tail = null;
+		int data = sc.nextInt();
+		
+		while(data != -1) {
+			Node<Integer> newNode = new Node<>(data);   //Its next is null at this time
+			if(head == null) {
+				head = newNode;
+				tail = newNode;
+			} else {
+				tail.next = newNode;
+				tail = tail.next; //tail = newNode;
+//				Node<Integer> temp = head;
+//				while(temp.next != null) {
+//					temp = temp.next;
+//				}
+//				temp.next = newNode;
+			}
+			data = sc.nextInt();
+		}
+		
+		return head;
+	}
+	
+	public static Node<Integer> deleteNode(Node<Integer> head, int pos) {
+		if(pos == 0) {
+			return head.next;
+		}
+		
+		Node<Integer> temp = head;
+		int i = 0;
+		
+		while(i<pos-1) {
+			temp = temp.next;
+			i++;
+		}
+		
+		temp.next = temp.next.next;
+		return head;
+	}
+	
+	public static Node<Integer> insertNode(Node<Integer> head, int data, int pos) {
+		
+		Node<Integer> toAdd = new Node<>(data);
+		
+		if(pos==0) {
+			toAdd.next = head;
+			return toAdd;
+		}
+		
+		Node<Integer> temp = head;
+		int i = 0;
+		
+		while(i<pos-1) {
+			temp = temp.next;
+			i++;
+		}
+		Node<Integer> nextNode = temp.next;
+		temp.next = toAdd;
+		toAdd.next = nextNode;
+		return head;
+	}
+	
+	public static int findNode(Node<Integer> head, int n) {
+		Node<Integer> temp = head;
+		int i=0;
+		
+		while(temp != null) {
+			if(temp.data == n) return i;
+			temp = temp.next;
+			i++;
+		}
+		
+		return -1;
+	}
+	
+	public static void print(Node<Integer> head) {
+		
+		Node<Integer> temp = head;
+		
+		while(temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+	
+	public static Node<Integer> appendLastNToFirst(Node<Integer> head, int n) {
+		Node<Integer> temp = head;
+		int i = 0;
+		
+		while(temp.next != null) {
+			temp = temp.next;
+			i++;
+		}
+		
+		int size = i+1;
+		Node<Integer> tail = temp;
+		
+		i=0;
+		temp = head; //Temp should again return head
+		
+		while(i<size-n-1) {
+			temp = temp.next;
+			i++;
+		}
+		
+		Node<Integer> first = temp;
+		Node<Integer> second = temp.next;
+		
+		tail.next = head;
+		first.next = null;
+		
+		return second;
+		
+	}
+	
+	public static void removeDuplicates(Node<Integer> head) {
+		Node<Integer> temp = head;
+		
+		while(temp )
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		
+		Node[] ans = new Node[t];
+		int index = 0;
+		
+		while(t-->0) {
+			Node<Integer> head = takeInput();
+			int n = sc.nextInt();
+			head = appendLastNToFirst(head, n);
+			ans[index++] = head;
+		}
+		
+		for(Node e : ans) {
+			print(e);
+		}
+		
+	}
+
+}
