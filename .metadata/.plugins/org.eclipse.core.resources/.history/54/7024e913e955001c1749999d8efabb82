@@ -1,0 +1,20 @@
+package test;
+import java.security.Principal;
+import java.util.*;
+public class TestCode {
+
+	public static int stringToInteger(String str, int startIndex, int num) {
+        if(startIndex == str.length()) return num;
+        
+        char temp = str.charAt(startIndex);
+        num = num * 10 + Character.getNumericValue(temp);
+        return stringToInteger(str, startIndex+1, num);
+    }
+    
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		System.out.println(stringToInteger(str, 0, 0));
+	}
+
+}

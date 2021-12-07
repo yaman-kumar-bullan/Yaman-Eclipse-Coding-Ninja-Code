@@ -1,0 +1,27 @@
+package test;
+import java.util.*;
+public class TestCode {
+
+	public static int lastIndexOf(int[] input, int x, int startIndex, int lastIndex) {
+		if(startIndex == input.length) return lastIndex;
+		
+		if(input[startIndex] == x) lastIndex = startIndex;
+		return lastIndexOf(input, x, startIndex+1, lastIndex);
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] input = new int[n];
+		for(int i=0; i<n; i++) {
+			input[i] = sc.nextInt();
+		}
+		
+		int k = sc.nextInt();
+		
+		System.out.println(lastIndexOf(input, k, 0 , -1));
+
+	}
+
+}

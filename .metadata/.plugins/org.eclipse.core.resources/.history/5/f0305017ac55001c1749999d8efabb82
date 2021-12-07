@@ -1,0 +1,24 @@
+package test;
+import java.security.Principal;
+import java.util.*;
+public class TestCode {
+
+	public static boolean checkPalindrome(String str, int s, int e) {
+		if(s>=e) return true;
+		
+		if(str.charAt(s) == str.charAt(e)) {
+			if(checkPalindrome(str, s+1, e-1)) {
+				return true;
+			} else return false;
+		} else return false;
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		System.out.println(checkPalindrome(str, 0, str.length()-1));
+		
+	}
+
+}

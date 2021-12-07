@@ -1,0 +1,31 @@
+package test;
+import java.util.*;
+public class TestCode {
+
+	public static int findIndexOfXInArray(int[] input, int x, int startIndex) {
+		if(startIndex == input.length) return -1;
+		
+		if(input[startIndex] == x) return startIndex;
+		return findIndexOfXInArray(input, x, startIndex+1);
+	}
+	
+	public static int findIndexOfX(int[] input, int x) {
+		return findIndexOfXInArray(input,x,0);
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] input = new int[n];
+		for(int i=0; i<n; i++) {
+			input[i] = sc.nextInt();
+		}
+		
+		int k = sc.nextInt();
+		
+		System.out.println(findIndexOfX(input, k));
+
+	}
+
+}

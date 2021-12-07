@@ -1,0 +1,28 @@
+package test;
+import java.util.*;
+public class TestCode {
+
+	public static void printAllIndexOfX(int[] input, int x, int startIndex) {
+		if(startIndex == input.length) return;
+		
+		if(input[startIndex] == x) System.out.print(startIndex + " ");
+		
+		printAllIndexOfX(input, x, startIndex+1);
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] input = new int[n];
+		for(int i=0; i<n; i++) {
+			input[i] = sc.nextInt();
+		}
+		
+		int k = sc.nextInt();
+		
+		System.out.println(lastIndexOf(input, k, 0 , -1));
+
+	}
+
+}

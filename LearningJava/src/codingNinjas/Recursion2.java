@@ -293,51 +293,52 @@ public class Recursion2 {
 	}
 	
 	public static String[] keypadCombinations(int n) {
-		if(n==0) {
-			String[] ans = {""};
-			return ans;
-		}
-		
-		String[] smallAns = keypadCombinations(n/10);
-		char[] characters = characterCorrespondingToNumber(n%10);
-		String[] ans = new String[smallAns.length*characters.length];
-		int index = 0;
-		
-		for(int i=0; i<smallAns.length; i++) {
-			for(int j=0; j<characters.length; j++) {
-				ans[index++] = smallAns[i] + characters[j];
-			}
-		}
-		
-		return ans;
+	    if(n == 0 || n == 1) {
+	        String[] ans = {""};
+	        return ans;
+	    }
+	    
+	    char[] lastDigitArray = charArray(n%10);
+	    String[] smallAns = keypadCombinations(n/10);
+	    
+	    String[] ans = new String[lastDigitArray.length * smallAns.length];
+	    int index = 0;
+	    
+	    for(int i=0; i<smallAns.length; i++) {
+	        for(int j=0; j<lastDigitArray.length; j++) {
+	            ans[index++] = smallAns[i] + lastDigitArray[j];
+	        }
+	    }
+	    
+	    return ans;
 	}
 	
-	public static char[] characterCorrespondingToNumber(int n) {
-		if(n==2) {
-			char temp[] = {'a','b','c'};
-			return temp;
-		} else if(n==3) {
-			char temp[] = {'d','e','f'};
-			return temp;
-		} else if(n==4) {
-			char temp[] = {'g','h','i'};
-			return temp;
-		} else if(n==5) {
-			char temp[] = {'j','k','l'};
-			return temp;
-		} else if(n==6) {
-			char temp[] = {'m','n','o'};
-			return temp;
-		} else if(n==7) {
-			char temp[] = {'p','q','r','s'};
-			return temp;
-		} else if(n==8) {
-			char temp[] = {'t','u','v'};
-			return temp;
-		} else {
-			char temp[] = {'w','x','y','z'};
-			return temp;
-		}
+	public static char[] charArray(int n) {
+	    if(n==2) {
+	        char[] temp = {'a','b','c'};
+	        return temp;
+	    } else if(n==3) {
+	        char[] temp = {'d','e','f'};
+	        return temp;
+	    } else if(n==4) {
+	        char[] temp = {'g','h','i'};
+	        return temp;
+	    } else if(n==5) {
+	        char[] temp = {'j','k','l'};
+	        return temp;
+	    } else if(n==6) {
+	        char[] temp = {'m','n','o'};
+	        return temp;
+	    } else if(n==7) {
+	        char[] temp = {'p','q','r','s'};
+	        return temp;
+	    } else if(n==8) {
+	        char[] temp = {'t','u','v'};
+	        return temp;
+	    } else {
+	        char[] temp = {'w','x','y','z'};
+	        return temp;
+	    }
 	}
 	
 	public static void removeConsecutiveDuplicatesFromString(String str, String temp) {  //Strings do not get changed or updated when passed to a function
@@ -396,7 +397,7 @@ public class Recursion2 {
 			return;
 		}
 		
-		char[] characters = characterCorrespondingToNumber(n%10);
+		char[] characters = charArray(n%10);
 		for(int i=0; i<characters.length; i++) {
 			printKeypadCombinations(n/10, characters[i] + output);
 		}
@@ -427,8 +428,7 @@ public class Recursion2 {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		String str = sc.nextLine();
-		System.out.println(checkPalindrome(str, 0, str.length()-1));
+		
 		
 	}
 }
