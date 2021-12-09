@@ -3,42 +3,21 @@ import java.util.*;
 public class TestCode {
 	
 	public static int[] printSpiral(int[][] arr) {
-		int rows = arr.length, cols = arr[0].length;
+		int rows = arr.length;
+		int cols = arr[0].length;
+		
 		int[] ans = new int[rows*cols];
 		int index = 0;
 		
-		int top = 0, down = rows-1, left = 0, right = cols-1;
-		int i = 0;
-		
-		while(top<=down && left<=right) {
-			if(i==0) {
-				for(int j=left; j<=right; j++) {
-					ans[index++] = arr[top][j];
-				}
-				top++;
-				i++;
-				i = i%4;
-			} else if(i==1) {
-				for(int j=top; j<=down; j++) {
-					ans[index++] = arr[j][right];
-				}
-				right--;
-				i++;
-				i = i%4;
-			} else if(i==2) {
-				for(int j=right; j>=left; j--) {
-					ans[index++] = arr[down][j];
-				}
-				down--;
-				i++;
-				i = i%4;
+		for(int i=0; i<cols; i++) {
+			if(i%2==0) {
+				for(int j=0; j<rows; j++) {
+					ans[index++] = arr[j][i];
+ 				}
 			} else {
-				for(int j=down; j>=top; j--) {
-					ans[index++] = arr[j][left];
+				for(int j=rows-1; j>=0; j--) {
+					ans[index++] = arr[j][i];
 				}
-				left++;
-				i++;
-				i=i%4;
 			}
 		}
 		

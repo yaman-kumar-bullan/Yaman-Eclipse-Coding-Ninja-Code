@@ -38,39 +38,65 @@ public class TwoDimensionalArray {
 		}
 	}
 
-	public static int[] largestRowOrColumn(int[][] arr) {
+	public static String largestRowOrColumn(int[][] arr) {
 		int rows = arr.length;
 		int cols = arr[0].length;
-		int[] ans = new int[4];
-		ans[0] = Integer.MIN_VALUE;  //Row sum
-		ans[2] = Integer.MIN_VALUE;   //col sum
-		ans[1] = -1; //rowIndex
-		ans[3] = -1; //colIndex
 		
+		//Here we have number of rows and columns
+		
+		int rowsSum[] = new int[rows];
 		for(int i=0; i<rows; i++) {
-			int rowSum = 0;
+			int sum = 0;
 			for(int j=0; j<cols; j++) {
-				rowSum += arr[i][j];
+				sum += arr[i][j];
 			}
-			if(rowSum > ans[0]) {
-				ans[0] = rowSum;
-				ans[1] = i;
+			rowsSum[i] = sum;  //The sum will be added to a index corresponding to the index of the row that is being iterated
+		}  
+		
+		int colsSum[] = new int[cols];
+		for(int j=0; j<cols; j++) {
+			int sum = 0;
+			for(int i=0; i<rows; i++) {
+				sum += arr[i][j];
+			}
+			colsSum[j] = sum;   //The sum will be added to a index corresponding to the index of the column that is being iterated
+		}
+		
+		//Now we have the row sum and column sum in two arrays rowsSum[] & colsSum[]
+		
+		int rowMax = rowsSum[0];
+		int indexOfMaxSumRow = 0;
+		for(int i=0; i<rowsSum.length; i++) {
+			if(rowsSum[i] > rowMax) {
+				rowMax = rowsSum[i];
+				indexOfMaxSumRow = i;
 			}
 		}
 		
-		for(int i=0; i<cols; i++) {
-			int colSum = 0;
-			for(int j=0; j<rows; j++) {
-				colSum += arr[j][i];
-			}
-			if(colSum > ans[2]) {
-				ans[2] = colSum;
-				ans[3] = i;
+		int colMax = colsSum[0];
+		int indexOfMaxSumCol = 0;
+		for(int i=0; i<colsSum.length; i++) {
+			if(colsSum[i] > colMax) {
+				colMax = colsSum[i];
+				indexOfMaxSumCol = i;
 			}
 		}
 		
-		return ans;
+		//We have the maximum sum row and maximum sum cols with both of their indices
 		
+		if(rowMax == colMax) {
+//			System.out.println("row " + indexOfMaxSumRow + " " + rowMax);   //If row sum and column sum is equal then row sum is given priority
+			String answer = "row " + Integer.toString(indexOfMaxSumRow) + " " + Integer.toString(rowMax);
+			return answer;
+		}
+		
+		if(rowMax > colMax) {
+			String answer = "row " + Integer.toString(indexOfMaxSumRow) + " " + Integer.toString(rowMax);
+			return answer;
+		} else {
+			String answer = "column " + Integer.toString(indexOfMaxSumCol) + " " + Integer.toString(colMax);
+			return answer;
+		}
 	}
 
 	public static int[] printLikeAWave(int[][] arr) {

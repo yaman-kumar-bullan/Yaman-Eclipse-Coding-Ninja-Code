@@ -1,0 +1,26 @@
+package test;
+import java.util.*;
+public class TestCode {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		printSubSequences(str);
+	}
+	
+	public static void printSubSequences(String str) {
+		printSubSequences(str, "");
+	}
+	
+	public static void printSubSequences(String str, String output) {
+		if(str.length()==0) {
+			System.out.println(output);
+			return;
+		}
+		
+		printSubSequences(str.substring(1), output);
+		printSubSequences(str.substring(1), output + str.charAt(0));
+	}
+	
+}
