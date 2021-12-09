@@ -26,7 +26,6 @@ public class TwoDimensionalArray {
 				arr[i][j] = sc.nextInt();
 			}
 		}
-		sc.close();
 		return arr;
 	}
 	
@@ -97,46 +96,91 @@ public class TwoDimensionalArray {
 	}
 	
 	public static int[] printSpiral(int[][] arr) {
-		int rows = arr.length, cols = arr[0].length;
-		int[] ans = new int[rows*cols];
+//		int rows = arr.length;
+//		int cols = arr[0].length;
+//		boolean[][] isVisited = new boolean[rows][cols];
+//		int[] ans = new int[rows*cols];
+//		int index = 0;
+//		
+//		for(int k=0; k<rows; k++) {
+//			
+//			for(int j=k, i=k; j<cols-k; j++) {
+//				if(isVisited[i][j] == true) return ans;
+//				else isVisited[i][j] = true;
+//				ans[index++] = arr[i][j];
+//			}
+//			
+//			for(int i=k, j=cols-1-k; i<rows-k; i++) {
+//				if(isVisited[i][j] == true) return ans;
+//				else isVisited[i][j] = true;
+//				ans[index++] = arr[i][j];
+//			}
+//			
+//			for(int j=cols-1-k, i=rows-1-k; j>=k; j--) {
+//				if(isVisited[i][j] == true) return ans;
+//				else isVisited[i][j] = true;
+//				ans[index++] = arr[i][j];
+//			}
+//			
+//			for(int i=rows-1-k, j=k; i>=k; i--) {
+//				if(isVisited[i][j] == true) return ans;
+//				else isVisited[i][j] = true;
+//				ans[index++] = arr[i][j];
+//			}
+//		}
+//		return ans;
+		
+		int top = 0, down = arr.length-1, left = 0, right = arr[0].length-1;
+		int dir = 0;
+		int ans[] = new int[(arr.length)*(arr[0].length)];
 		int index = 0;
 		
-		int top = 0, down = rows-1, left = 0, right = cols-1;
-		int i = 0;
-		
 		while(top<=down && left<=right) {
-			if(i==0) {
-				for(int j=left; j<=right; j++) {
-					ans[index++] = arr[top][j];
+			if(dir==0) {
+				for(int i=left; i<=right; i++) {
+					ans[index++] = arr[top][i];
 				}
 				top++;
-				i++;
-				i = i%4;
-			} else if(i==1) {
-				for(int j=top; j<=down; j++) {
-					ans[index++] = arr[j][right];
+			} else if(dir==1) {
+				for(int i=top; i<=down; i++) {
+					ans[index++] = arr[i][right];
 				}
 				right--;
-				i++;
-				i = i%4;
-			} else if(i==2) {
-				for(int j=right; j>=left; j--) {
-					ans[index++] = arr[down][j];
+			} else if(dir==2) {
+				for(int i=right; i>=left; i--) {
+					ans[index++] = arr[down][i];
 				}
 				down--;
-				i++;
-				i = i%4;
-			} else {
-				for(int j=down; j>=top; j--) {
-					ans[index++] = arr[j][left];
+			} else if(dir==3) {
+				for(int i=down; i>=top; i--) {
+					ans[index++] = arr[i][left];
 				}
 				left++;
-				i++;
-				i=i%4;
 			}
+			
+			dir = (dir+1)%4;
 		}
-		
 		return ans;
 	}
-
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int t = sc.nextInt();
+		int[][] answer = new int[t][];
+		int index = 0;
+		
+		while(t-->0) {
+			int arr[][] = takeInput();
+			answer[index++] = printSpiral(arr);
+		}
+		
+		for(int i=0; i<answer.length; i++) {
+			for(int j=0; j<answer[i].length; j++) {
+				System.out.print(answer[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+	}
 }
