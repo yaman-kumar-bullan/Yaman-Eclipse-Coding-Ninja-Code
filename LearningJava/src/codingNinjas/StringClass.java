@@ -6,11 +6,7 @@ public class StringClass {
 		if(str.length() == 0) return 0;
 		
 		String[] arr = str.split(" ");
-		if(arr.length == 0) {
-			return 1;
-		} else {
-			return arr.length;
-		}
+		return arr.length;
 	}
 	
 	public static boolean palindrome(String str) {
@@ -42,14 +38,14 @@ public class StringClass {
 		
 		String[] arr = str.split(" ");
 		
-		else {
-			String rev = "";
-			for(int i=arr.length-1; i>=0; i--) {
-				rev = rev + arr[i] + " ";
-			}
-			rev = rev.trim();
-			return rev;
+		String output = "";
+		
+		for(int i=arr.length-1; i>=0; i--) {
+			output += arr[i] + " ";	
 		}
+		
+		output = output.trim();
+		return output;
 	} 
 
 	public static boolean permutation(String str1, String str2) {
@@ -91,25 +87,25 @@ public class StringClass {
 		
 		String[] arr = str.split(" ");
 		
-		String rev = "";
+		String output = "";
 		
-		if(arr.length == 0) return reverseAString(str);
-		else {
-			for(int i=0; i<arr.length; i++) {
-				rev += reverseAString(arr[i]) + " ";
-			}
-			rev = rev.trim();
-			return rev;
+		for(int i=0; i<arr.length; i++) {
+			output += reverseAString(arr[i]) + " ";	
 		}
+		
+		output = output.trim();
+		return output;
 	}
 	
 	public static String reverseAString(String str) {
-		StringBuilder sb = new StringBuilder();
+		int n = str.length();
+		String ans = "";
 		
-		for(int i=str.length()-1; i>=0; i--) {
-			sb.append(str.charAt(i));
+		for(int i=n-1; i>=0; i--) {
+			ans += str.charAt(i);	
 		}
-		return sb.toString();
+		
+		return ans;
 	}
 	
 	public static String removeCharacter(String str, char x) {
