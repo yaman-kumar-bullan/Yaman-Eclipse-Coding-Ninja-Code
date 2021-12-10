@@ -68,23 +68,17 @@ public class StringClass {
 		return true;
 	}
 
-	public static String removeConsecutiveDuplicates(String str) {
-		StringBuilder sb = new StringBuilder();
+	public static String removeDuplicates(String str) {
 		int n = str.length();
+		String output = "";
 		
-		for(int i=0; i<n-1; i++) {
-			if(str.charAt(i) == str.charAt(i+1)) {
-				if(i==n-2) {
-					sb.append(str.charAt(i));
-				}
-				continue;
-			} else {
-				sb.append(str.charAt(i));
-				if(i==n-2) sb.append(str.charAt(i+1));
+		for(int i=0; i<n; i++) {
+			if(i<n-1 && (str.charAt(i) == str.charAt(i+1) ) ) continue;
+			else {
+				output += str.charAt(i);
 			}
 		}
-		
-		return sb.toString();
+		return output;
 	}
 
 	public static String reverseEachWord(String str) {
@@ -113,35 +107,28 @@ public class StringClass {
 		return sb.toString();
 	}
 	
-	public static String removeCharacter(String str, char x) {
-		StringBuilder sb = new StringBuilder();
+	public static String removeACharacter(String str, char x) {
+		
+		String output = "";
 		
 		for(int i=0; i<str.length(); i++) {
-			if(str.charAt(i) == x) continue;
-			else sb.append(str.charAt(i));
+			if(str.charAt(i) != x) output += str.charAt(i);
 		}
-		return sb.toString();
+		
+		return output;
 	}
 	
-	public static String compressTheString(String str) {
-		StringBuilder sb = new StringBuilder();
+	public static String compressString(String str) {
 		int n = str.length();
+		StringBuilder sb = new StringBuilder();
+		int count = 1;
 		
-		for(int i=0; i<n-1; i++) {
-			int count = 1;
-			while(str.charAt(i) == str.charAt(i+1)) {
-				count++;
-				i++;
-				if(i==n-1) break;
-			}
-			sb.append(str.charAt(i));
-			if(count > 1) {
-				sb.append(count);
-			}
-			
-			if(i==n-2) {
-				if(str.charAt(i) != str.charAt(i+1)) sb.append(str.charAt(i+1));
-				return sb.toString();
+		for(int i=0; i<n; i++) {
+			if(i<n-1 && (str.charAt(i) == str.charAt(i+1)) ) count++;
+			else {
+				sb.append(str.charAt(i));
+				if(count != 1) sb.append(count);
+				count = 1;
 			}
 		}
 		
@@ -167,6 +154,25 @@ public class StringClass {
 		}
 		
 		return result;
+	}
+	
+	public static char highestOccuringCharacterInString(String str) {   //This is a relatively easy way
+		int[] arr = new int[256];
+		
+		int maxFrequency = 0;
+		int AsciiValueMaxChar = -1;
+		
+		for(int i=0; i<str.length()-1; i++) {
+			int ascii = str.charAt(i);
+			arr[ascii] = arr[ascii] + 1;
+			if(arr[ascii] > maxFrequency) {
+				maxFrequency = arr[ascii];
+				AsciiValueMaxChar = ascii;
+			}
+		}
+		
+		char temp = (char) AsciiValueMaxChar;
+		return temp;
 	}
 	
 	public static void main(String[] args) {

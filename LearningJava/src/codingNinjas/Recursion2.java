@@ -354,16 +354,17 @@ public class Recursion2 {
 		str = temp;
 	}
 	
-	public static String removeConsecutiveDuplicatesFromString(String str) {
-		if(str.length() <= 1) {
-			String temp = str;
-			return temp;
+	public static String removeDuplicates(String str) {
+		int n = str.length();
+		String output = "";
+		
+		for(int i=0; i<n; i++) {
+			if(i<n-1 && (str.charAt(i) == str.charAt(i+1) ) ) continue;
+			else {
+				output += str.charAt(i);
+			}
 		}
-		
-		String smallAns = removeConsecutiveDuplicatesFromString(str.substring(1));
-		
-		if(str.charAt(0) != str.charAt(1)) smallAns = str.charAt(0) + smallAns;
-		return smallAns;
+		return output;
 	}
 	
 	public static String replaceCharacterRecursively(String str, char c1, char c2) {

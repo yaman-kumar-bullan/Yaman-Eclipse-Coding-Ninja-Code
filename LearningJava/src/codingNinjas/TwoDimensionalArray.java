@@ -138,5 +138,26 @@ public class TwoDimensionalArray {
 		
 		return ans;
 	}
-
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int t = sc.nextInt();
+		int[][] answer = new int[t][];
+		int index = 0;
+		
+		while(t-->0) {
+			int arr[][] = takeInput();
+			answer[index++] = printSpiral(arr);
+		}
+		
+		for(int i=0; i<answer.length; i++) {
+			for(int j=0; j<answer[i].length; j++) {
+				System.out.print(answer[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		sc.close();
+	}
 }

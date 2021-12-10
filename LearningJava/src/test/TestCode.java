@@ -2,78 +2,30 @@ package test;
 import java.util.*;
 public class TestCode {
 	
-	public static int[] printSpiral(int[][] arr) {
-		int rows = arr.length, cols = arr[0].length;
-		int[] ans = new int[rows*cols];
-		int index = 0;
+	public static char highestOccuringCharacter(String str) {
+		int[] arr = new int[256];
 		
-		int top = 0, down = rows-1, left = 0, right = cols-1;
-		int i = 0;
+		int maxFrequency = 0;
+		int AsciiValueMaxChar = -1;
 		
-		while(top<=down && left<=right) {
-			if(i==0) {
-				for(int j=left; j<=right; j++) {
-					ans[index++] = arr[top][j];
-				}
-				top++;
-				i++;
-				i = i%4;
-			} else if(i==1) {
-				for(int j=top; j<=down; j++) {
-					ans[index++] = arr[j][right];
-				}
-				right--;
-				i++;
-				i = i%4;
-			} else if(i==2) {
-				for(int j=right; j>=left; j--) {
-					ans[index++] = arr[down][j];
-				}
-				down--;
-				i++;
-				i = i%4;
-			} else {
-				for(int j=down; j>=top; j--) {
-					ans[index++] = arr[j][left];
-				}
-				left++;
-				i++;
-				i=i%4;
+		for(int i=0; i<str.length()-1; i++) {
+			int ascii = str.charAt(i);
+			arr[ascii] = arr[ascii] + 1;
+			if(arr[ascii] > maxFrequency) {
+				maxFrequency = arr[ascii];
+				AsciiValueMaxChar = ascii;
 			}
 		}
 		
-		return ans;
+		char temp = (char) AsciiValueMaxChar;
+		return temp;
 	}
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
 		
-		int t = sc.nextInt();
-		
-		int[][] ans = new int[t][];
-		int index = 0;
-		
-		while(t-->0) {
-			int rows = sc.nextInt();
-			int cols = sc.nextInt();
-			
-			int[][] arr = new int[rows][cols];
-			
-			for(int i=0; i<rows; i++) {
-				for(int j=0; j<cols; j++) {
-					arr[i][j] = sc.nextInt();
-				}
-			}
-			
-			ans[index++] = printSpiral(arr);
-		}
-		
-		for(int i=0; i<ans.length; i++) {
-			for(int j=0; j<ans[i].length; j++) {
-				System.out.print(ans[i][j] + " ");
-			}
-			System.out.println();
-		}
-		
-	}	
+		System.out.println(highestOccuringCharacter(str));
+	}
+	
 }

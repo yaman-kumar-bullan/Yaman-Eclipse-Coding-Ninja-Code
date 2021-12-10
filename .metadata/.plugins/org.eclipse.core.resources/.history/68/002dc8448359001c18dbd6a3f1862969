@@ -1,0 +1,20 @@
+package test;
+import java.util.*;
+public class TestCode {
+	
+	public static String removeACharacter(String str, char x, String output) {
+		if(str.length() == 0) return output;
+		
+		if(str.charAt(0) != x) output += str.charAt(0);
+		return removeACharacter(str.substring(1), x, output);
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		char x = sc.nextLine().charAt(0);
+		
+		System.out.println(removeACharacter(str, x, ""));
+	}
+	
+}

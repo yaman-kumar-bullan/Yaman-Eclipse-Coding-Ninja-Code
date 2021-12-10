@@ -1,0 +1,38 @@
+package test;
+import java.util.*;
+public class TestCode {
+	
+	public static String reverseString(String str) {
+		int n = str.length();
+		String output = "";
+		
+		for(int i=n-1; i>=0; i--) {
+			output += str.charAt(i);
+		}
+		
+		return output;
+	}
+	
+	public static String reverseEachWord(String str) {
+		if(str.length() == 0) return str;
+		
+		String[] arr = str.split(" ");
+		String output = "";
+		
+		
+		
+		for(int i=0; i<arr.length; i++) {
+			output += reverseString(arr[i]) + " ";
+		}
+		
+		return output;
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		System.out.println(reverseEachWord(str));
+	}
+	
+}
