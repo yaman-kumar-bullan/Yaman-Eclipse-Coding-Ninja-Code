@@ -42,7 +42,6 @@ public class StringClass {
 		
 		String[] arr = str.split(" ");
 		
-		if(arr.length == 0) return str;
 		else {
 			String rev = "";
 			for(int i=arr.length-1; i>=0; i--) {
