@@ -172,25 +172,7 @@ public class StringClass {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-//		int t = sc.nextInt();
-//		boolean[] ans = new boolean[t];
-//		int index = 0;
-//		sc.nextLine();
-//		
-//		while(t-->0) {
-//			String s1 = sc.nextLine();
-//			String s2 = sc.nextLine();
-//			ans[index++] = permutation(s1, s2);
-//		}
-//		
-//		for(boolean i : ans) {
-//			System.out.println(i);
-//		}
-		
 		String str = sc.nextLine();
-//		char c = sc.next().charAt(0);
-		System.out.println(highestOccuringCharacter(str));
-		
-		int i = 'a';
+		printPrefix(str);
 	}
 }
