@@ -1,6 +1,4 @@
-package oops;
-
-import test.ZeroDenominatorException;
+package test;
 
 public class Fraction {
 	
@@ -35,7 +33,7 @@ public class Fraction {
 		return denominator;
 	}
 
-	public void setDenominator(int denominator) {
+	public void setDenominator(int denominator){
 		try {
 			if(denominator == 0) {
 				ZeroDenominatorException e = new ZeroDenominatorException();
@@ -45,6 +43,8 @@ public class Fraction {
 			System.out.println("Don't enter 0 in denominator");
 			return;
 		} 
+		
+		
 		this.denominator = denominator;
 		simplify();
 	}
