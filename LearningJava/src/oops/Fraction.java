@@ -1,7 +1,5 @@
 package oops;
 
-import test.ZeroDenominatorException;
-
 public class Fraction {
 	
 	private int numerator;

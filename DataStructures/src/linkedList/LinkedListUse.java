@@ -1,5 +1,6 @@
 package linkedList;
 import java.util.*;
+
 public class LinkedListUse {
 	
 	public static Node<Integer> takeInput() {
@@ -56,7 +57,7 @@ public class LinkedListUse {
 		return head;
 	}
 	
-	public static Node<Integer> insertNode(Node<Integer> head, int data, int pos) {  //Only valid from index 0 to n
+	public static Node<Integer> insertNode(Node<Integer> head, int data, int pos) {  //Here we can add elements from first index starting to last index and one more than that
 		
 		Node<Integer> toAdd = new Node<>(data);
 		
@@ -325,20 +326,29 @@ public class LinkedListUse {
 		return ansHead;
 	}
 	
-	public static Node<Integer> mid(Node<Integer> head) {
+	public static int size(Node<Integer> head) {
 		Node<Integer> temp = head;
-		int i = 0;
+		int i=0;
 		
 		while(temp != null) {
-			temp = temp.next; 
+			temp = temp.next;
 			i++;
 		}
 		
-		int n = i;
-		int pos = n%2==0 ? (n/2)-1 : ((n+1)/2)-1;
+		return i;
+	}
+	
+	public static Node<Integer> mid(Node<Integer> head) { 
 		
-		i = 0;
-		temp = head;
+		/*
+		 * When size is even mid element is (size/2)th element and when size is odd mid element is ((size+1)/2)th element
+		 */
+		int size = size(head);
+		
+		int pos = size%2 == 0 ? (size/2)-1 : ((size+1)/2)-1;
+		
+		Node<Integer> temp = head;
+		int i = 0;
 		
 		while(i<pos) {
 			temp = temp.next;
@@ -481,7 +491,7 @@ public class LinkedListUse {
 			currentNode = nextNode;
 			count++;
 		}
-		
+		 
 		if(currentNode != null) {
 			head.next = reverseKNodes(currentNode,k);
 		}
@@ -578,9 +588,10 @@ public class LinkedListUse {
 	
 	public static void main(String[] args) {
 		
+		Scanner sc = new Scanner(System.in);
 		Node<Integer> head = takeInput();
-		head = bubbleSort(head);
-		print(head);
-		
+		Node<Integer> head2 = takeInput();
+		Node<Integer> newHead = mergeSortedLinkedList2(head, head2);
+		print(newHead);
 	}
 }
